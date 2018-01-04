@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>      
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style>
+body{
+  background-color: green;
+}
+nav.navbar-inverse{
+  background-color: Purple;
+}
+.navbar-brand{
+  font-size:1.5em;
+  font-family: Trebuchet MS;
+  
+}
+img{
+ width: 100%;
+ max-width:100%;
+  max-height:400px;
+  @media (max-height:800px){
+    width: 80%;
+ max-width:80%;
+  max-height:400px;
+  }
+    }
+.move-it{
+  margin-top:10px;
+}
+.hide{
+  display:none;
+}
+.other{
+ background-color: white; 
+  
+}
+.text{
+  margin: 10px;
+}
+.cust{
+ border:1px solid; 
+}
+
+  footer{
+  background-color:#800000;
+  color:white;
+  padding:10px;
+}
+.spok{
+ color:black;
+  font-family:serif;
+}
+@media (max-width:965px) and (min-width:659px){
+  .res{
+    font-size: 18px;
+  }
+  
+}
+@media (min-width:965px){
+  .res{
+    font-size: 20px;
+  }
+  
+}
+@media (max-width:420px){
+  .tip{
+    font-size:13px;
+  }
+  
+}
+@media (max-width:397px){
+  .tip{
+    font-size:9px;
+  }
+  .mits{
+    font-size:11px;
+  }
+  
+}
+@media (max-width:337px){
+  .tip{
+    font-size:8px;
+  }
+   .mits{
+    font-size:9px;
+  }
+  
+}
+@media (max-width:300px){
+  .tip{
+    font-size:6px;
+  }
+   .mits{
+    font-size:6px;
+  }
+  
+}
+
+@media (max-width:247px){
+  h3{
+    font-size:15px;
+  }
+  
+}
+@media (max-width:213px){
+  .res{
+    font-size:10px;
+  }
+  h4{
+    font-size:10px;
+  } 
+   h3{
+    font-size:11px;
+  }
+}
+@media (max-width:150px) and (min-width:100px){
+  .res{
+    font-size:8px;
+  } 
+  h4{
+    font-size:8px;
+  } 
+   h3{
+    font-size:9px;
+  }
+}
+@media (max-width:100px){
+  .res{
+    font-size:6px;
+  } 
+  h4{
+    font-size:6px;
+  } 
+   h3{
+    font-size:7px;
+  }
+}
+
+
+
+
+  @media (max-width:420px) and (min-width:220px){
+    h1{
+      font-size:20px;
+    }
+  }
+   @media (max-width:220px){
+    h1{
+      font-size:10px;
+    }
+  }
+ @media (min-width:900px){
+   img{
+      width:80%;
+     max-width:80%;
+     
+   }
+  }
+  
+.cheep{
+  color:blue
+}
+
+</style>
+  <script>
+  $('.btn.load-first').click(function() {
+  
+  $('.text').text('loading . . .');
+  
+  $.ajax({
+    type:"GET",
+    data: {
+      q: "Burger",
+      restrict_sr: "true"
+    },
+    url:"https://www.reddit.com/r/FoodPorn/search.json",
+    success: function(response) {
+      $('.text').html('');
+      var children = response.data.children;
+      for (var i = 0; i < children.length; i++) {
+        if (children[i].data.thumbnail !== "self" && children[i].data.thumbnail !== "default") {
+          $('.text').append('<div class= "col-xs-4 cust"><img src="' + children[i].data.thumbnail + '" /></div>');
+        }
+      }
+      $('.load-first').addClass('hide');
+      $('.tide').removeClass('hide');  
+        
+      
+      
+    },
+    error: function(response) {
+      console.log(response)
+   $('.text').html("Error loading")
+    }
+  });
+  
+});
+
+$('.btn.tide').click(function() {
+  
+  $('.text').text('loading . . .');
+  
+
+      $('.text').html('');
+     
+      $('.load-first').removeClass('hide');
+      $('.tide').addClass('hide');  
+          
+  
+  
+})
+
+  </script>
+</head>
+<body>
+
+
+
+    <nav class="navbar navbar-inverse">
+      <div class="container">
+        <a class="navbar-brand" href="#">Biter29's</a>
+        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="sr-only">Toggle Navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="nav navbar-nav">
+            <li >
+              <a class="nav-link" href="#">Dinner
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Lunch</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Drinks</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <div class="container">  
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active">
+      
+    </li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+   <center>   <img src="https://via.placeholder.com/350x150" alt="Food"></center>
+      <div class="carousel-caption">
+        <h1 class="timmy"> Best food money can buy!</h1>
+      </div>
+    </div>
+    <div class="item">
+   <center>   <img src="https://via.placeholder.com/350x150" alt="chicken"> </center>
+      <div class="carousel-caption">
+        <h1 class="timmy">Chicken that makes the mouth water!</h1>
+      </div>
+    </div>
+    <div class="item">
+     <center> <img src="https://via.placeholder.com/350x150" alt="steak"> </center>
+      <div class="carousel-caption">
+        <h1 class="timmy">Home of the Androgynous Steak!</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+  </div>
+  
+  
+ <!-- The code from here is for regular menu items/recipes       --> 
+  
+  <div class="container move-it">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    
+   <center> <img src="https://via.placeholder.com/350x150" alt="chicken">
+     </div> </center>
+  <center><div class="panel-body custer">
+    <h4 class="cheep">Daily Special</h4>
+    <h3>Chicken Deluxe</h3>
+    <span class=
+"res spok">Our chicken deluxe made with apricot, jasmine, and gingersnaps will have you saying: "How in the world did they make chicken so androgynous?"</span>
+    </div></center>
+</div>
+      </div>
+    </div>    
+    <div class="row">
+        <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="brisket">
+  </div>
+  <div class="panel-body">
+    <center> <h5 class="mits">Beautiful Brisket Sliders</h5>
+    <span class="spok tip">When we suggested Brisket our friends laughed at us, then they took a bite.<br /> Who's laughing now?<br /> Introducing our brisket sliders, made with the best meat known to man. These sliders come with lettuce tomato and onion, adding to flavor in such a way to make you reach paradise.</span></center>
+  </div>
+</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="salmon">
+  </div>
+  <div class="panel-body">
+    <center>  <h5 class="mits">Salmon Burger Sliders</h5>
+    <span class="spok tip">After a random discussion about beef stew and borscht, we came up with this fish recipe.<br /> Our Salmon Burger Sliders are sure to bring a smile to your face. The juicy salmon is mixed with our special sauce, with onion and lettuce on a bun. What more can one ask for?</span></center>
+  </div>
+</div>
+    </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="pad thai">
+  </div>
+  <div class="panel-body">
+  <center>    <h5 class="mits">Sweet Potato Chicken Pad Thai</h5>
+    <span class="spok tip">Of course you cannot spell Potocki's without stir fry, Introducing our Sweet Potato Chicken Pad Thai, so delicious we decided to show it for all its glory. Comes with sweet potato noodles and delicious chicken.</span> </center>
+  </div>
+</div>
+    </div>
+    
+  </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="salad">
+  </div>
+  <div class="panel-body">
+     <center> <h5 class="mits">Taco Salad</h5>
+    <span class="spok tip">Our taco salad combining two things mexican cuisine and veganism, comes with our specially made bean medly. As well as vegan cheese and a taco shell. What else can a lover of mexican vegan cuisine ask for.</span> </center>
+  </div>
+</div>
+    </div>
+    <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="Shawarma">
+  </div>
+  <div class="panel-body">
+   <center>   <h5 class="mits">Chicken Shawarma</h5>
+    <span class="spok tip">How could we forget the Shawarma?<br /> Our Shawarma which is a Potocki Classic, is made with tantalizing chicken with a unique marinade that will make you say "Mmm, so good!"</span>
+    </center> </div> 
+</div>
+    </div>
+      <div class="col-sm-4">
+        <div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="https://via.placeholder.com/350x150" alt="Soup">
+  </div>
+  <div class="panel-body">
+    <center>  <h5 class="mits">Tomato Basil Soup</h5>
+    <span class="spok tip">When the founder of Potocki's said that we "Needa a new soup that can tear everything apart." We took it to heart with our Tomato Basil Soup. It comes with toast that is dipped into the soup to create the greatest pairing. Enjoy.</span></center>
+  </div>
+</div>
+    </div>
+    
+  </div>
+    
+    
+    </div>
+  <div class="container">
+  <center><button type="button" class="btn load-first">Previous Recipes</button></center> 
+     <center><button type="button" class="btn tide hide">Hide Recipes</button></center> 
+  <div class="row other text">
+  </div>
+    
+  </div>
+    <footer class="py-5 bg-dark">
+      <div class="container typo">
+       <center> <p class="m-0 text-center text-white">Copyright ©  Biter29 </p>
+         </div></center>
+      
+    </footer>
+</body>
+</html>
